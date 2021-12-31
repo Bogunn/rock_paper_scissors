@@ -6,11 +6,11 @@ function computerPlay (){
     
     // Have computer choose from options
    if (selectionNumber === 0){
-       console.log(compSelection = compOptions[0].toString());
+       compSelection = compOptions[0].toString();
    } else if (selectionNumber === 1) {
-       console.log(compSelection = compOptions[1].toString());
+       compSelection = compOptions[1].toString();
    } else { selectionNumber === 2 
-       console.log(compSelection = compOptions[2].toString());
+       compSelection = compOptions[2].toString();
    } 
    
 
@@ -18,34 +18,55 @@ function computerPlay (){
 
 }
 
+let score = 0
 
 
 function playRound(playerSelection, compSelection) {
     let outcome = ""
     if(playerSelection == compSelection){
-        console.log(outcome = "It's a tie");
-        // Rock
-    } else if (playerSelection == "Rock" && compSelection == "Paper"){
-        console.log(outcome= "You lose"); 
-    } else if (playerSelection == "Rock" && compSelection == "Scissors") {
-        console.log(outcome = "You win")
-    } //Paper 
-    else if (playerSelection == "Paper" && compSelection == "Rock") {
-        console.log(outcome = "You win");
-    } else if (playerSelection == "Paper" && compSelection == "Scissors") {
-        console.log(outcome = "You lose")
-    } // Scissors 
-    else if (playerSelection == "Scissors" && compSelection == "Rock")
-        console.log(outcome= "You lose");
+        outcome = "It's a tie";
+        // Losing 
+    } else if (playerSelection == "Rock" && compSelection == "Paper" ||
+                playerSelection == "Paper" && compSelection == "Scissors" ||
+                playerSelection == "Scissors" && compSelection == "Rock"){
+        outcome= "You lose"; 
+        //Winning
+    } else if (playerSelection == "Rock" && compSelection == "Scissors" || 
+                playerSelection == "Paper" && compSelection == "Rock" || 
+                playerSelection == "Scissors" && compSelection == "Paper") {
+        outcome = "You win";
 
     }
-    }
-    
 
-   console.log(playerSelection, compSelection)
+
+    if (outcome == "You win"){
+        score += 1;
+    } else {
+        score = score;
+    }
+
+    return outcome; 
+
+
+   
 }
 
-let playerSelection = "Rock";
+let playerSelection = "";
 let compSelection = computerPlay();
 
-console.log(playRound(playerSelection,compSelection));
+function game(choice){
+   let selection = prompt("Choose Rock, Paper or Scissors:")
+   fLetter = selection.charAt(0).toUpperCase();
+   letters = selection.slice(1).toLowerCase();
+   selection = fLetter.concat(letters);
+   playerSelection = selection;
+
+   
+
+}
+
+
+console.log(game());
+console.log(playRound(playerSelection,compSelection))
+console.log("You selected: " + playerSelection,  "Computer Selection: " + compSelection);
+console.log(score)
